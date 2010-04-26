@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name     = "pdf-writer"
-  s.version  = "1.2.3"
-  s.date     = "2009-05-19"
+  s.version  = "1.2.4"
+  s.date     = "2010-04-26"
   s.summary  = "A pure Ruby PDF document creation library."
-  s.email    = "ken@metaskills.net"
-  s.homepage = "http://github.com/metaskills/pdf-writer/"
+  s.email    = "Herman@verschooten.net"
+  s.homepage = "http://github.com/Hermanverschooten/pdf-writer/"
   s.description = "A pure Ruby PDF document creation library."
   s.has_rdoc = true
   s.authors  = ["Austin Ziegler","Ken Collins"]

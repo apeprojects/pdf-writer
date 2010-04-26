@@ -1569,7 +1569,7 @@ class PDF::Writer
     max   = 0
 
     text.to_s.each_line do |line|
-      width = text_line_width(line, size)
+      width = text_line_width(line.chomp, size)
       max = width if width > max
     end
     max
@@ -2411,7 +2411,7 @@ class PDF::Writer
           end
         end
 
-        line = add_text_wrap(left, @y, right - left, line, size, just, 0, options[:test])
+        line = add_text_wrap(left, @y, right - left, line.chomp, size, just, 0, options[:test])
       end
     end
 
