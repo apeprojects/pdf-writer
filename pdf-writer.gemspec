@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.summary  = "A pure Ruby PDF document creation library."
   s.email    = "Herman@verschooten.net"
   s.homepage = "http://github.com/Hermanverschooten/pdf-writer/"
-  s.description = "A pure Ruby PDF document creation library."
+  s.description = "A pure Ruby PDF library."
   s.has_rdoc = true
   s.authors  = ["Austin Ziegler","Ken Collins"]
   s.autorequire       = ["pdf/writer"]

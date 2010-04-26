@@ -31,6 +31,20 @@ module PDF
            gsub(/&lt;/, '<').
            gsub(/&gt;/, '>').
            gsub(/&amp;/, '&')
+      begin
+        text.unpack("U*").collect do |s|
+          case s
+            when 0..255
+              s.chr
+            when 8364 # euro symbol
+              128.chr
+            else
+              "."
+          end
+        end.join("")
+      rescue
+        text
+      end
     end
   end
 end
@@ -745,8 +759,8 @@ class PDF::Writer
   def load_font_metrics(font)
     metrics = PDF::Writer::FontMetrics.open(font)
     @mutex.synchronize do
-      @fonts[font] = metrics
-      @fonts[font].font_num = @fonts.size
+      @fonts[metrics.fontname] = metrics
+      @fonts[metrics.fontname].font_num = @fonts.size
     end
     metrics
   end
@@ -770,6 +784,9 @@ class PDF::Writer
   private :font_file
 
   def load_font(font, encoding = nil)
+    # Add  afm extension if plain name is given.
+    font = font + '.afm' unless File.extname(font)=="afm"
+
     metrics = load_font_metrics(font)
 
     name  = File.basename(font).gsub(/\.afm$/o, "")
@@ -801,6 +818,7 @@ class PDF::Writer
         break if fontfile
       end
     end
+    fbtype = fontfile
     
     if font =~ /afm/o and fontfile
         # Find the array of font widths, and put that into an object.
@@ -933,7 +951,7 @@ class PDF::Writer
         'LastChar'        => last_char,
         'FontDescriptor'  => fdsc.oid
       }
-      tmp['SubType'] = 'TrueType' if fontfile =~ /\.ttf/
+      tmp['SubType'] = 'TrueType' if fbtype =~ /\.ttf/o
 
       tmp.each { |kk, vv| wfo.__send__("#{kk.downcase}=".intern, vv) }
     end

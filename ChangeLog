@@ -1,5 +1,10 @@
 = PDF::Writer Change Log
 
+== PDF::Writer 1.2.4: April, 26 2010
+* Herman verschooten <herman@verschooten.net> : make it my own version
+* Fixed line endings on multiline strings
+* Added support to escape function to de-unicode strings
+
 == PDF::Writer 1.2.1: May 13, 2009
 * Ruby 1.9 compatibility.
 
