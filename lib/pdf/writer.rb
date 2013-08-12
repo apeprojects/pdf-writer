@@ -25,14 +25,14 @@ module PDF
       # Escape the text so that it's safe for insertion into the PDF
       # document.
     def self.escape(text)
-      text.gsub(/\\/, '\\\\\\\\').
+      txt=text.gsub(/\\/, '\\\\\\\\').
            gsub(/\(/, '\\(').
            gsub(/\)/, '\\)').
            gsub(/&lt;/, '<').
            gsub(/&gt;/, '>').
            gsub(/&amp;/, '&')
       begin
-        text.unpack("U*").collect do |s|
+        txt.unpack("U*").collect do |s|
           case s
             when 0..255
               s.chr
@@ -43,7 +43,7 @@ module PDF
           end
         end.join("")
       rescue
-        text
+        txt
       end
     end
   end
