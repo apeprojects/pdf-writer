@@ -1,3 +1,4 @@
+# encoding: ASCII-8BIT
 #! /usr/bin/env ruby
 #--
 # PDF::Writer for Ruby.

@@ -1,3 +1,4 @@
+# encoding: ASCII-8BIT
 
 unless RUBY_VERSION < '1.9'
   class ::Mutex
