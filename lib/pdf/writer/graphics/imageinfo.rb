@@ -1,4 +1,5 @@
-# encoding: ASCII-8BIT
+# encoding: UTF-8
+
 #--
 # PDF::Writer for Ruby.
 #   http://rubyforge.org/projects/ruby-pdf/
@@ -203,7 +204,7 @@ class PDF::Writer::Graphics::ImageInfo
      @width, @height, @bits = dim.unpack("x4vvx3C")
     elsif size > 12 and (size <= 64 or size == 108)
      @width, @height, @bits = dim.unpack("x4VVv")
-    end  
+    end
   end
   private :measure_BMP
 
